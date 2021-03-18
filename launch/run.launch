@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name='script_id_topic_name' default="~script_id"/>
+    <arg name='script_argument_topic_name' default="~script_argument"/>
+    <arg name='execution_status_topic_name' default="~execution_status"/>
+    <arg name='sleep_time_in_seconds_between_status_messages' default="1.0"/>
+    <arg name="scripts_directory" default="$(find script_executor)/scripts" />
+    <arg name="scripts_configuration" default="$(find script_executor)/yaml/scripts_configuration.yaml" />
+
+    <node name="script_executor" pkg="script_executor" type="script_executor" output="screen">
+        <param name="script_id_topic_name" type="str" value="$(arg script_id_topic_name)"/>
+        <param name="script_argument_topic_name" type="str" value="$(arg script_argument_topic_name)"/>
+        <param name="execution_status_topic_name" type="str" value="$(arg execution_status_topic_name)"/>
+        <param name="sleep_time_in_seconds_between_status_messages" type="double" value="$(arg sleep_time_in_seconds_between_status_messages)"/>
+        <param name="scripts_directory" type="str" value="$(arg scripts_directory)"/>
+        <rosparam command="load" file="$(arg scripts_configuration)" ns="scripts_configuration"/>
+    </node>
+</launch>

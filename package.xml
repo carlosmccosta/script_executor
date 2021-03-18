@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>script_executor</name>
+  <version>1.0.0</version>
+  <description>Package for executing bash scripts / commands requested by ROS topics</description>
+  <maintainer email="carloscosta.cmcc@gmail.com">Carlos Miguel Correia da Costa</maintainer>
+  <license>BSD</license>
+  <author email="carloscosta.cmcc@gmail.com">Carlos Miguel Correia da Costa</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+</package>
