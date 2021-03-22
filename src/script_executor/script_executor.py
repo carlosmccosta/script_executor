@@ -11,10 +11,10 @@ class ScriptExecutor(object):
 
     class ExecutionStatus(IntEnum):
         RESET = 0
-        SUCCESS = 1
-        FAILED = 2
-        INITIALIZED = 3
-        PROCESSING = 4
+        INITIALIZED = 1
+        PROCESSING = 2
+        SUCCESS = 3
+        FAILED = 4
 
     def __init__(self):
         # parameters
