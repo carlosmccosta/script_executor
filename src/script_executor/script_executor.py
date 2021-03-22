@@ -47,11 +47,11 @@ class ScriptExecutor(object):
     def process_program_id(self, uint16_msg):
         try:
             if uint16_msg.data == 0:
-                rospy.loginfo("Received script_id: 0 for reset")
+                rospy.logdebug_throttle(5, "Received script_id: 0 for reset")
                 self.script_id_zero_received = True
                 return
             if not self.script_id_zero_received:
-                rospy.loginfo("Avoiding script execution because script_id: 0 has not been received yet")
+                rospy.logdebug_throttle(5, "Avoiding script execution because script_id: 0 has not been received yet")
                 return
             self.script_id_zero_received = False
             self.execution_status_publisher.publish(UInt8(self.ExecutionStatus.RESET))
@@ -81,6 +81,6 @@ class ScriptExecutor(object):
     def process_program_argument(self, int16_msg):
         try:
             self.program_argument = int16_msg
-            rospy.loginfo("process_program_argument: [%d]", int16_msg.data)
+            rospy.logdebug_throttle(5, "process_program_argument: [%d]", int16_msg.data)
         except Exception as e:
             rospy.logerr('[script_executor:process_program_id] Exception: %s', str(e))
