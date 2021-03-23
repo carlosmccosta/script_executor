@@ -22,6 +22,7 @@ class ScriptExecutor(object):
         self.script_argument_topic_name = rospy.get_param("~script_argument_topic_name", "~script_argument")
         self.execution_status_topic_name = rospy.get_param("~execution_status_topic_name", "~execution_status")
         self.sleep_time_in_seconds_between_status_messages = rospy.get_param("~sleep_time_in_seconds_between_status_messages", 1.0)
+        self.sleep_time_in_seconds_before_running_script = rospy.get_param("~sleep_time_in_seconds_before_running_script", 0.0)
         self.scripts_directory = rospy.get_param("~scripts_directory")
 
         # state
@@ -64,6 +65,7 @@ class ScriptExecutor(object):
                 command = command.replace("#", str(self.program_argument.data))
                 command = command.replace("$", self.scripts_directory + "/")
                 rospy.loginfo("command: [%s]", command)
+                time.sleep(self.sleep_time_in_seconds_before_running_script)
                 result_status = subprocess.call(command, shell=True, executable='/bin/bash')
                 rospy.loginfo("command return code: [%s]", result_status)
                 if result_status == 0:
